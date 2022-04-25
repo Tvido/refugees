@@ -1,0 +1,40 @@
+{
+  "name": "work_for_refugees",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node ./bin/server.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon ./bin/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "2.8.5",
+    "cross-env": "7.0.3",
+    "dotenv": "^10.0.0",
+    "express": "4.17.1",
+    "http-errors": "^2.0.0",
+    "joi": "^17.4.2",
+    "joi-phone-validation": "^1.0.7",
+    "jsonwebtoken": "^8.5.1",
+    "logger": "^0.0.1",
+    "mongoose": "^6.0.12",
+    "morgan": "1.10.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tvido/work_for_refugees.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tvido/work_for_refugees/issues"
+  },
+  "homepage": "https://github.com/Tvido/work_for_refugees#readme"
+}
