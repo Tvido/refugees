@@ -10,7 +10,7 @@ const favoriteSchema = Schema(
     owner: {
       type: Types.ObjectId,
       ref: "user",
-      // required: true,
+      required: true,
     },
   },
   { versionKey: false, timestamps: true }

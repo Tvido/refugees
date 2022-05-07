@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, Types, model } = require("mongoose");
 const Joi = require("joi");
 
 const candidateSchema = Schema(
@@ -59,10 +59,11 @@ const candidateSchema = Schema(
     studyDateTo: {
       type: String,
     },
-    // owner: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "user",
-    // },
+    owner: {
+      type: Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 
