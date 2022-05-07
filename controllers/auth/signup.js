@@ -1,5 +1,4 @@
 const {User} = require("../../schemas/user");
-// const bcrypt = require("bcryptjs");
 
 const signup = async (req, res, next) => {
     try {
@@ -14,11 +13,6 @@ const signup = async (req, res, next) => {
             });
         }
 
-        //no hash:
-        //const hashPass = bcrypt.hashSync(password, bcrypt.getSaltSync(5))
-        // const newUser = await User.create({email, password: hashPass})
-
-        //with hash:
         const newUser = new User({email})
         newUser.setPassword(password)
         await newUser.save()

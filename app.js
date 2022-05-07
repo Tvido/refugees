@@ -6,6 +6,10 @@ const app = express();
 const vacanciesRouter = require("./routes/api/vacancies/vacancies");
 const candidatesRouter = require("./routes/api/candidates/candidates");
 const authRouter = require("./routes/api/auth/auth");
+const favoritesRouter = require("./routes/api/favorites/favorites");
+
+// const { vacanciesRouter, candidatesRouter, authRouter, favoritesRouter } = require("./routes/api/");
+
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
 app.use(logger(formatsLogger));
@@ -15,6 +19,7 @@ app.use(express.json());
 app.use("/api/v1/vacancies", vacanciesRouter);
 app.use("/api/v1/candidates", candidatesRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/favorites", favoritesRouter);
 
 app.use((_, res) => {
   res.status(404).json({ message: "Not found" });

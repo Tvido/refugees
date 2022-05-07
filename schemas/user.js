@@ -18,6 +18,20 @@ const userSchema = Schema(
             required: true,
             minlength: 4,
         },
+        companyName: {
+            type: String,
+            required: true,
+            minlength: 4,
+        },
+        token: {
+            type: String,
+            default: null,
+        },
+        // roles: {
+        //     type: String,
+        //     enum: ["user", "recruiter", "admin"],
+        //     default: "user",
+        // },
     },
     { versionKey: false, timestamps: true }
 );
@@ -25,6 +39,7 @@ const userSchema = Schema(
 const joiSchema = Joi.object({
     email: Joi.string().required().pattern(emailRegexp),
     password: Joi.string().required().min(4),
+    companyName: Joi.string().required().min(2),
 });
 
 userSchema.methods.setPassword = async function (password) {

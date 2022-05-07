@@ -6,22 +6,43 @@ const { SECRET_KEY } = process.env;
 
 const authenticate = async (req, res, next) => {
     try {
+        console.log(req.headers.authorization);
         const [bearer, token] = req.headers.authorization.split(" ");
+
         if (bearer !== "Bearer") {
             throw new Unautorized();
         }
+
         const { id } = jwt.verify(token, SECRET_KEY);
 
-        const user = await User.findOne({ token });
+        const user = await User.findById(id);
 
-        if (!user) {
-            throw new Unautorized();
-        }
         req.user = user;
         next();
     } catch (error) {
-        throw new Unautorized(error.message);
+        throw new Unautorized();
     }
+
 };
+
+// const authenticate = async (req, res, next) => {
+//     try {
+//         const [bearer, token] = req.headers.authorization.split(" ");
+//         if (bearer !== "Bearer") {
+//             throw new Unautorized();
+//         }
+//         const { id } = jwt.verify(token, SECRET_KEY);
+
+//         const user = await User.findOne({ token });
+
+//         if (!user) {
+//             throw new Unautorized();
+//         }
+//         req.user = user;
+//         next();
+//     } catch (error) {
+//         throw new Unautorized(error.message);
+//     }
+// };
 
 module.exports = authenticate;

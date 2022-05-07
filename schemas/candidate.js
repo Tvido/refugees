@@ -20,7 +20,7 @@ const candidateSchema = Schema(
       minlength: 2,
     },
     phoneNumber: {
-      type: Number,
+      type: String,
       minlength: 2,
     },
     region: {
@@ -36,10 +36,10 @@ const candidateSchema = Schema(
       minlength: 2,
     },
     workDateFrom: {
-      type: Date,
+      type: String,
     },
     workDateTo: {
-      type: Date,
+      type: String,
     },
     educationLevel: {
       type: String,
@@ -54,13 +54,18 @@ const candidateSchema = Schema(
       minlength: 2,
     },
     studyDateFrom: {
-      type: Date,
+      type: String,
     },
     studyDateTo: {
-      type: Date,
+      type: String,
     },
+    // owner: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "user",
+    // },
   },
   { versionKey: false, timestamps: true }
+
 );
 
 const joiSchema = Joi.object({
@@ -68,7 +73,7 @@ const joiSchema = Joi.object({
   positionWant: Joi.string().min(2),
   birth: Joi.string().min(2),
   email: Joi.string().min(2),
-  phoneNumber: Joi.number().min(2),
+  phoneNumber: Joi.string().min(2),
   region: Joi.string().min(2),
   company: Joi.string().min(2),
   position: Joi.string().min(2),
@@ -84,12 +89,3 @@ const joiSchema = Joi.object({
 const Candidate = model('candidates', candidateSchema);
 
 module.exports = { Candidate, joiSchema };
-
-
-// nameSurname: '',
-// 		birthdayDate: '',
-// 		phone: '',
-// 		lookingForPosition: '',
-// 		lookingForCity: '
-
-// stadyMonthTo
