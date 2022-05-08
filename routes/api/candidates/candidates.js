@@ -5,7 +5,7 @@ const {validation, controllerWrapper, authenticate} = require("../../../middlewa
 const {joiSchema} = require("../../../schemas/candidate")
 
 router.get('/', controllerWrapper(ctrl.getAllCandidates));
-router.post('/', controllerWrapper(authenticate), validation(joiSchema), controllerWrapper(ctrl.addCandidate));
+router.post('/', validation(joiSchema), controllerWrapper(ctrl.addCandidate));
 router.get('/:candidateId', controllerWrapper(authenticate), controllerWrapper(ctrl.getCandidateById));
 router.delete('/:candidateId', controllerWrapper(authenticate), controllerWrapper(ctrl.deleteCandidate));
 router.put('/:candidateId', controllerWrapper(authenticate), validation(joiSchema), controllerWrapper(ctrl.update));

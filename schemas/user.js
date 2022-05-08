@@ -30,6 +30,12 @@ const userSchema = Schema(
             type: String,
             default: null,
         },
+
+        //-----------------------------
+        roles: [{
+            type: String,
+            ref: 'role'
+        }]
     },
     { versionKey: false, timestamps: true }
 );
@@ -39,6 +45,7 @@ const joiSchema = Joi.object({
     name: Joi.string().min(2),
     email: Joi.string().required().pattern(emailRegexp),
     password: Joi.string().required().min(4),
+    roles: Joi.array()
 });
 
 userSchema.methods.setPassword = async function (password) {

@@ -1,4 +1,5 @@
 const {User} = require("../../schemas/user");
+const {Role} = require("../../schemas/role");
 
 const signup = async (req, res, next) => {
     try {
@@ -13,7 +14,8 @@ const signup = async (req, res, next) => {
             });
         }
 
-        const newUser = new User({email})
+        const userRole = await Role.findOne({value: "recruiter"})
+        const newUser = new User({email, roles: [userRole.value]})
         newUser.setPassword(password)
         await newUser.save()
 

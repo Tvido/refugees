@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
-const {User} = require("../../schemas/user");
+const { User } = require("../../schemas/user");
+const {Role} = require("../../schemas/role");
 
 const login = async (req, res, next) => {
     const {email, password} = req.body;
@@ -14,6 +15,8 @@ const login = async (req, res, next) => {
 
     const payload = {
         id: user._id,
+        //-----
+        roles: user.roles
     };
 
     const {SECRET_KEY} = process.env;

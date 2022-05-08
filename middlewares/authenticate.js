@@ -16,6 +16,9 @@ const authenticate = async (req, res, next) => {
         const { id } = jwt.verify(token, SECRET_KEY);
 
         const user = await User.findById(id);
+        console.log(user);
+        // const userRole = await User.findById(id);
+        // const userRole = await Role.findOne({value: "recruiter"})
 
         req.user = user;
         next();
@@ -24,25 +27,5 @@ const authenticate = async (req, res, next) => {
     }
 
 };
-
-// const authenticate = async (req, res, next) => {
-//     try {
-//         const [bearer, token] = req.headers.authorization.split(" ");
-//         if (bearer !== "Bearer") {
-//             throw new Unautorized();
-//         }
-//         const { id } = jwt.verify(token, SECRET_KEY);
-
-//         const user = await User.findOne({ token });
-
-//         if (!user) {
-//             throw new Unautorized();
-//         }
-//         req.user = user;
-//         next();
-//     } catch (error) {
-//         throw new Unautorized(error.message);
-//     }
-// };
 
 module.exports = authenticate;
