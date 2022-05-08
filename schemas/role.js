@@ -7,7 +7,7 @@ const roleSchema = Schema(
         value: {
             type: String,
             unique: true,
-            default: "USER"
+            default: "user"
         },
     },
     { versionKey: false, timestamps: true }

@@ -20,7 +20,7 @@ const userSchema = Schema(
         },
         companyName: {
             type: String,
-            required: true,
+            // required: true,
             minlength: 4,
         },
         token: {
@@ -39,7 +39,7 @@ const userSchema = Schema(
 const joiSchema = Joi.object({
     email: Joi.string().required().pattern(emailRegexp),
     password: Joi.string().required().min(4),
-    companyName: Joi.string().required().min(2),
+    companyName: Joi.string().min(2),
 });
 
 userSchema.methods.setPassword = async function (password) {

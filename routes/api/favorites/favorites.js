@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { joiSchema } = require("../../../schemas/favorites");
+const { joiSchema } = require("../../../schemas/favorite");
 const {validation, controllerWrapper, authenticate} = require("../../../middlewares");
 const ctrl = require("../../../controllers/favorites");
 const router = express.Router();
