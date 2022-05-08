@@ -7,6 +7,14 @@ const emailRegexp =
 
 const userSchema = Schema(
     {
+        companyName: {
+            type: String,
+            minlength: 4,
+        },
+        name: {
+            type: String,
+            minlength: 4,
+        },
         email: {
             type: String,
             required: true,
@@ -18,28 +26,19 @@ const userSchema = Schema(
             required: true,
             minlength: 4,
         },
-        companyName: {
-            type: String,
-            // required: true,
-            minlength: 4,
-        },
         token: {
             type: String,
             default: null,
         },
-        // roles: {
-        //     type: String,
-        //     enum: ["user", "recruiter", "admin"],
-        //     default: "user",
-        // },
     },
     { versionKey: false, timestamps: true }
 );
 
 const joiSchema = Joi.object({
+    companyName: Joi.string().min(2),
+    name: Joi.string().min(2),
     email: Joi.string().required().pattern(emailRegexp),
     password: Joi.string().required().min(4),
-    companyName: Joi.string().min(2),
 });
 
 userSchema.methods.setPassword = async function (password) {
