@@ -9,7 +9,7 @@ const addCandidate = async (body) => {
     const candidates = await getAllCandidates();
     candidates.push(newCandidate);
     await updateCandidate(candidates);
-    console.log(newCandidate);
+    // console.log(newCandidate);
     return newCandidate;
   } catch (error) {
     throw error;

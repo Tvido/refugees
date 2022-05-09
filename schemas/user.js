@@ -41,11 +41,11 @@ const userSchema = Schema(
 );
 
 const joiSchema = Joi.object({
-    companyName: Joi.string().min(2),
+    companyName: Joi.string().min(2).when('roles', { is: 'recruiter', then: Joi.required() }),
     name: Joi.string().min(2),
     email: Joi.string().required().pattern(emailRegexp),
     password: Joi.string().required().min(4),
-    roles: Joi.array()
+    roles: Joi.string().valid('user', 'recruiter')
 });
 
 userSchema.methods.setPassword = async function (password) {

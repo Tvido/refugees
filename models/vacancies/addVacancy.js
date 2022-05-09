@@ -9,7 +9,7 @@ const addVacancy = async (body) => {
     const vacancies = await getAllVacancies();
     vacancies.push(newVacancy);
     await updateVacancy(vacancies);
-    console.log(newVacancy);
+    // console.log(newVacancy);
     return newVacancy;
   } catch (error) {
     throw error;

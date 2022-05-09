@@ -3,7 +3,8 @@ const {Role} = require("../../schemas/role");
 
 const signup = async (req, res, next) => {
     try {
-        const {email, password} = req.body;
+        const { email, password, roles = "user" } = req.body;
+        let { companyName = null } = req.body
         const user = await User.findOne({email});
 
         if (user) {
@@ -14,8 +15,12 @@ const signup = async (req, res, next) => {
             });
         }
 
-        const userRole = await Role.findOne({value: "recruiter"})
-        const newUser = new User({email, roles: [userRole.value]})
+        if (roles === "user") {
+            companyName = null
+        }
+
+        const userRole = await Role.findOne({value: roles})
+        const newUser = new User({email, companyName, roles: [userRole]})
         newUser.setPassword(password)
         await newUser.save()
 

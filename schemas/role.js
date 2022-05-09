@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
-
+//на фронті створити приховане поле value = "recruiter"
 const roleSchema = Schema(
     {
         value: {

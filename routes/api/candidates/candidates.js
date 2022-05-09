@@ -1,13 +1,15 @@
 const router = require('express').Router();
 
 const ctrl = require('../../../controllers/candidates');
-const {validation, controllerWrapper, authenticate} = require("../../../middlewares");
-const {joiSchema} = require("../../../schemas/candidate")
+const {validation, controllerWrapper, authenticate, roleValidation} = require("../../../middlewares");
+const { joiSchema } = require("../../../schemas/candidate")
 
-router.get('/', controllerWrapper(authenticate), controllerWrapper(ctrl.getAllCandidates));
-router.post('/', controllerWrapper(authenticate), validation(joiSchema), controllerWrapper(ctrl.addCandidate));
-router.get('/:candidateId', controllerWrapper(authenticate), controllerWrapper(ctrl.getCandidateById));
-router.delete('/:candidateId', controllerWrapper(authenticate), controllerWrapper(ctrl.deleteCandidate));
-router.put('/:candidateId', controllerWrapper(authenticate), validation(joiSchema), controllerWrapper(ctrl.update));
+// console.log(roleValidation);
+
+router.get('/', authenticate, roleValidation(["user"]), controllerWrapper(ctrl.getAllCandidates));
+router.post('/',authenticate, validation(joiSchema), controllerWrapper(ctrl.addCandidate));
+router.get('/:candidateId', authenticate, controllerWrapper(ctrl.getCandidateById));
+router.delete('/:candidateId', authenticate, controllerWrapper(ctrl.deleteCandidate));
+router.put('/:candidateId', authenticate, validation(joiSchema), controllerWrapper(ctrl.update));
 
 module.exports = router;
