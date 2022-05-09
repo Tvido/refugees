@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { Unautorized } = require("http-errors");
+const { Unauthorized } = require("http-errors");
 const { User } = require("../schemas/user");
 
 const { SECRET_KEY } = process.env;
@@ -9,7 +9,7 @@ const authenticate = async (req, res, next) => {
         const [bearer, token] = req.headers.authorization.split(" ");
 
         if (bearer !== "Bearer") {
-            throw new Unautorized();
+            throw new Unauthorized();
         }
 
         const { id } = jwt.verify(token, SECRET_KEY);
@@ -19,7 +19,7 @@ const authenticate = async (req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
-        throw new Unautorized();
+        throw new Unauthorized();
     }
 
 };
