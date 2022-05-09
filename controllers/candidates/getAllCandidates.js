@@ -4,7 +4,8 @@ const getAllCandidates = async (req, res, next) => {
   try {
     const candidates = await Candidate.find({owner: req.user._id}).populate(
     "owner",
-    "_id email"
+      "_id email",
+    "roles"
   );
     res.json({
       candidates,

@@ -1,5 +1,10 @@
-const { Schema, model } = require("mongoose");
+const { Schema, Types, model } = require("mongoose");
 const Joi = require("joi");
+
+const roles = {
+    USER: "user",
+    RECRUITER: "recruiters"
+}
 
 //на фронті створити приховане поле value = "recruiter"
 const roleSchema = Schema(
@@ -7,8 +12,12 @@ const roleSchema = Schema(
         value: {
             type: String,
             unique: true,
-            default: "user"
+            default: roles.USER
         },
+        user: {
+            type: Types.ObjectId,
+            ref: "users"
+        }
     },
     { versionKey: false, timestamps: true }
 );
@@ -17,6 +26,6 @@ const joiSchema = Joi.object({
     value: Joi.string(),
 });
 
-const Role = model("role", roleSchema);
+const Role = model("roles", roleSchema);
 
-module.exports =  { Role, joiSchema };
+module.exports =  { Role, joiSchema, roles };

@@ -20,6 +20,6 @@ const joiSchema = Joi.object({
   name: Joi.string().required(),
 });
 
-const Favorite = model("favorite", favoriteSchema);
+const Favorite = model("favorites", favoriteSchema);
 
 module.exports = { Favorite, joiSchema };

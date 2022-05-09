@@ -1,14 +1,18 @@
 const jwt = require("jsonwebtoken");
-const { Unautorized, Forbidden } = require("http-errors");
+const { Unauthorized, Forbidden } = require("http-errors");
 // const { User } = require("../schemas/user");
 // const { SECRET_KEY } = process.env;
 
 const roleValidation = function (roles) {
-    
-    return function (req, res, next)  {
+    return async function (req, res, next) {
         try {
+
+            await req.user.populate("roles")
+
             const userRoles = req.user.roles
-            const hasRole = userRoles.some(role => roles.includes(role))
+            console.log("req.user: ", req.user);
+            console.log("userRoles: ", userRoles);
+            const hasRole = userRoles.some(role => roles.includes(role.value))
 
             if (!hasRole) {
                 throw new Forbidden();
@@ -16,9 +20,10 @@ const roleValidation = function (roles) {
 
             next();
         } catch (error) {
-            throw new Unautorized();
+            console.log(error);
+            next(new Unauthorized())
         }
     }
-    }
+}
 
 module.exports = roleValidation;

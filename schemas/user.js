@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, Types, model } = require("mongoose");
 const Joi = require("joi");
 const bcrypt = require("bcryptjs");
 
@@ -33,8 +33,8 @@ const userSchema = Schema(
 
         //-----------------------------
         roles: [{
-            type: String,
-            ref: 'role'
+            type: Types.ObjectId,
+            ref: 'roles'
         }]
     },
     { versionKey: false, timestamps: true }
@@ -56,6 +56,6 @@ userSchema.methods.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
 
-const User = model("user", userSchema);
+const User = model("users", userSchema);
 
 module.exports = { User, joiSchema };

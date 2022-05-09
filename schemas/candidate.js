@@ -61,7 +61,7 @@ const candidateSchema = Schema(
     },
     owner: {
       type: Types.ObjectId,
-      ref: "user",
+      ref: "users",
       required: true,
     },
   },
