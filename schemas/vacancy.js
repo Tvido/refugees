@@ -27,6 +27,14 @@ const vacancySchema = Schema(
       type: String,
       minlength: 2,
     },
+    eployeerName: {
+      type: String,
+      minlength: 2,
+    },
+    number: {
+      type: String,
+      minlength: 2,
+    }
   },
   { versionKey: false, timestamps: true }
 );
@@ -38,6 +46,8 @@ const joiSchema = Joi.object({
   salaryMin: Joi.number(),
   salaryMax: Joi.number(),
   description: Joi.string(),
+  eployeerName: Joi.string(),
+  number: Joi.string(),
 });
 
 const Vacancy = model('vacancies', vacancySchema);
