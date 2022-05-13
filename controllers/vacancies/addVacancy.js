@@ -2,7 +2,7 @@ const { Vacancy } = require("../../schemas");
 
 const addVacancy = async (req, res, next) => {
   try {
-    const vacancy = await Vacancy.findOne({ owner: req.user._id })
+    const vacancy = await Vacancy.findOne({  })
 
     if (vacancy) {
       return res.status(409).json({
@@ -12,7 +12,7 @@ const addVacancy = async (req, res, next) => {
       });
     }
 
-    const newVacancy = { ...req.body, owner: req.user._id };
+    const newVacancy = { ...req.body };
     const result = await Vacancy.create(newVacancy);
     res.status(201).json({
       status: "success",

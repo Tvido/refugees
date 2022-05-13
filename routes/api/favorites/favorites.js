@@ -5,8 +5,8 @@ const {validation, controllerWrapper, authenticate} = require("../../../middlewa
 const ctrl = require("../../../controllers/favorites");
 const router = express.Router();
 
-router.post("/", controllerWrapper(authenticate), validation(joiSchema), controllerWrapper(ctrl.add));
+router.post("/", authenticate, validation(joiSchema), controllerWrapper(ctrl.add));
 
-router.get("/", controllerWrapper(authenticate), ctrl.getAll);
+router.get("/", authenticate, ctrl.getAll);
 
 module.exports = router;
