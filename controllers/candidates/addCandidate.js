@@ -2,7 +2,7 @@ const { Candidate } = require("../../schemas");
 
 const addCandidate = async (req, res, next) => {
   try {
-    const candidate = await Candidate.findOne({ owner: req.user._id })
+    const candidate = await Candidate.findOne({ ...req.body, owner: req.user._id })
 
     if (candidate) {
       return res.status(409).json({
