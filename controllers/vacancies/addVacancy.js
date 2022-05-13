@@ -2,13 +2,13 @@ const { Vacancy } = require("../../schemas");
 
 const addVacancy = async (req, res, next) => {
   try {
-    const candidate = await Vacancy.findOne({ owner: req.user._id })
+    const vacancy = await Vacancy.findOne({ owner: req.user._id })
 
-    if (candidate) {
+    if (vacancy) {
       return res.status(409).json({
         status: "error",
         code: 409,
-        message: "Resume already exist",
+        message: "Vacancy already exist",
       });
     }
 
