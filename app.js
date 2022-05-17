@@ -14,7 +14,9 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
 app.use(logger(formatsLogger));
 app.use(cors({
-  origin: '*'
+  origin: '*',
+  methods: ['POST', 'GET', 'DELETE', 'PUT', 'PATCH', 'HEAD', 'OPTIONS'],
+  credentials: true,
 }));
 // app.use(cors());
 // app.use(cors((req, res, next) => {
