@@ -13,7 +13,18 @@ const favoritesRouter = require("./routes/api/favorites/favorites");
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
 app.use(logger(formatsLogger));
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
+// app.use(cors());
+// app.use(cors((req, res, next) => {
+//   res.set({
+//     'Access-Control-Allow-Origin': '*',
+//     'Access-Control-Allow-Headers': '*',
+//     'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT,OPTIONS'
+//   })
+// }))
+
 app.use(express.json());
 
 app.use("/api/v1/vacancies", vacanciesRouter);
