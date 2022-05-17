@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, Types, model } = require("mongoose");
 const Joi = require("joi");
 
 const vacancySchema = Schema(
@@ -34,7 +34,12 @@ const vacancySchema = Schema(
     number: {
       type: String,
       minlength: 2,
-    }
+    },
+    owner: {
+      type: Types.ObjectId,
+      ref: "recruiter",
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );

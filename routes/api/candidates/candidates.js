@@ -4,7 +4,8 @@ const ctrl = require('../../../controllers/candidates');
 const {validation, controllerWrapper, authenticate, roleValidation} = require("../../../middlewares");
 const { joiSchema } = require("../../../schemas/candidate")
 
-router.get('/', controllerWrapper(ctrl.getAllCandidates));
+router.get('/' ,authenticate, controllerWrapper(ctrl.getAllCandidates));
+router.get('/all', controllerWrapper(ctrl.getAllCandidates));
 router.post('/', authenticate, validation(joiSchema), controllerWrapper(ctrl.addCandidate));
 router.get('/:candidateId', authenticate, controllerWrapper(ctrl.getCandidateById));
 router.delete('/:candidateId', authenticate, controllerWrapper(ctrl.deleteCandidate));
