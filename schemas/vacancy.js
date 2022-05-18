@@ -37,7 +37,7 @@ const vacancySchema = Schema(
     },
     owner: {
       type: Types.ObjectId,
-      ref: "recruiter",
+      ref: "users",
       required: true,
     },
   },
