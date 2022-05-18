@@ -1,6 +1,6 @@
 const {Vacancy} = require("../../schemas");
 
-const update = async (vacancyId, body) => {
+const update = async (req, res, next) => {
   try {
     const { vacancyId } = req.params;
     const updateVacancy = await Vacancy.findByIdAndUpdate(vacancyId, req.body, {
