@@ -5,11 +5,10 @@ const favoriteSchema = Schema(
   {
     name: {
       type: String,
-      required: true,
     },
     owner: {
       type: Types.ObjectId,
-      ref: "user",
+      ref: "users",
       required: true,
     },
   },
@@ -17,7 +16,7 @@ const favoriteSchema = Schema(
 );
 
 const joiSchema = Joi.object({
-  name: Joi.string().required(),
+  name: Joi.string(),
 });
 
 const Favorite = model("favorites", favoriteSchema);
