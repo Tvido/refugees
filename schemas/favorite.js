@@ -16,11 +16,11 @@ const favoriteSchema = Schema(
       minlength: 2,
     },
     salaryMin: {
-      type: String,
+      type: Number,
       minlength: 2,
     },
     salaryMax: {
-      type: String,
+      type: Number,
       minlength: 2,
     },
     description: {
@@ -48,8 +48,8 @@ const joiSchema = Joi.object({
   position: Joi.string(),
   place: Joi.string(),
   type: Joi.string(),
-  salaryMin: Joi.string(),
-  salaryMax: Joi.string(),
+  salaryMin: Joi.number(),
+  salaryMax: Joi.number(),
   description: Joi.string(),
   eployeerName: Joi.string(),
   number: Joi.string(),
