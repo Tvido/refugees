@@ -3,8 +3,37 @@ const Joi = require("joi");
 
 const favoriteSchema = Schema(
   {
-    name: {
+    position: {
       type: String,
+      minlength: 2,
+    },
+    place: {
+      type: String,
+      minlength: 2,
+    },
+    type: {
+      type: String,
+      minlength: 2,
+    },
+    salaryMin: {
+      type: String,
+      minlength: 2,
+    },
+    salaryMax: {
+      type: String,
+      minlength: 2,
+    },
+    description: {
+      type: String,
+      minlength: 2,
+    },
+    eployeerName: {
+      type: String,
+      minlength: 2,
+    },
+    number: {
+      type: String,
+      minlength: 2,
     },
     owner: {
       type: Types.ObjectId,
@@ -16,7 +45,15 @@ const favoriteSchema = Schema(
 );
 
 const joiSchema = Joi.object({
-  name: Joi.string(),
+  position: Joi.string(),
+  place: Joi.string(),
+  type: Joi.string(),
+  salaryMin: Joi.string(),
+  salaryMax: Joi.string(),
+  description: Joi.string(),
+  eployeerName: Joi.string(),
+  number: Joi.string(),
+  position: Joi.string(),
 });
 
 const Favorite = model("favorites", favoriteSchema);

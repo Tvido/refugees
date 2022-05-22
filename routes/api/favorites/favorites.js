@@ -9,7 +9,12 @@ const {
 const ctrl = require("../../../controllers/favorites");
 const router = express.Router();
 
-router.post("/", authenticate, controllerWrapper(ctrl.add));
+router.post(
+  "/",
+  authenticate,
+  validation(joiSchema),
+  controllerWrapper(ctrl.add)
+);
 
 router.get("/", authenticate, ctrl.getAll);
 
