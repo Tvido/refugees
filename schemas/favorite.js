@@ -53,7 +53,6 @@ const joiSchema = Joi.object({
   description: Joi.string(),
   eployeerName: Joi.string(),
   number: Joi.string(),
-  position: Joi.string(),
 });
 
 const Favorite = model("favorites", favoriteSchema);
